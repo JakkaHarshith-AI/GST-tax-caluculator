@@ -1,118 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GST Calculator</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f9;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-    .calculator {
-      background-color: #ffffff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      width: 300px;
-      text-align: center;
-    }
-    h1 {
-      font-size: 24px;
-      margin-bottom: 20px;
-      color: #333;
-    }
-    label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
-      color: #555;
-    }
-    input {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 16px;
-      box-sizing: border-box;
-    }
-    button {
-      width: 100%;
-      padding: 10px;
-      background-color: #007BFF;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    button:hover {
-      background-color: #0056b3;
-    }
-    #result {
-      margin-top: 20px;
-      font-size: 18px;
-      font-weight: bold;
-      color: #333;
-    }
-    .error {
-      color: red;
-      font-size: 14px;
-      margin-top: 10px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GST Calculator</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-  <div class="calculator">
-    <h1>GST Calculator</h1>
-    <label for="price">Price (₹):</label>
-    <input type="number" id="price" placeholder="Enter price">
-
-    <label for="gst">GST Rate (%):</label>
-    <input type="number" id="gst" placeholder="Enter GST rate">
-
-    <button id="calculate">Calculate</button>
-
-    <div id="result"></div>
-    <div id="error" class="error"></div>
-  </div>
-
-  <script>
-    document.getElementById('calculate').addEventListener('click', function () {
-      // Get input values
-      const price = parseFloat(document.getElementById('price').value);
-      const gstRate = parseFloat(document.getElementById('gst').value);
-
-      // Clear previous error and result
-      document.getElementById('error').textContent = '';
-      document.getElementById('result').textContent = '';
-
-      // Validate inputs
-      if (isNaN(price) {
-        document.getElementById('error').textContent = 'Please enter a valid price.';
-        return;
-      }
-      if (isNaN(gstRate) || gstRate < 0) {
-        document.getElementById('error').textContent = 'Please enter a valid GST rate (must be a positive number).';
-        return;
-      }
-
-      // Calculate GST and total price
-      const gstAmount = (price * gstRate) / 100;
-      const totalPrice = price + gstAmount;
-
-      // Display the result
-      document.getElementById('result').textContent = `Total Price: ₹${totalPrice.toFixed(2)}`;
-    });
-  </script>
-
+    <div class="calculator">
+        <h1>GST Calculator</h1>
+        <div class="input-group">
+            <label for="amount">Enter Amount:</label>
+            <input type="number" id="amount" placeholder="Enter amount">
+        </div>
+        <div class="input-group">
+            <label for="gstRate">GST Rate (%):</label>
+            <input type="number" id="gstRate" placeholder="Enter GST rate">
+        </div>
+        <button onclick="calculateGST()">Calculate</button>
+        <div class="result">
+            <p>Total Amount (including GST): <span id="totalAmount"></span></p>
+            <p>GST Amount: <span id="gstAmount"></span></p>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
