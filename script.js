@@ -3,9 +3,17 @@ document.getElementById('calculate').addEventListener('click', function () {
   const price = parseFloat(document.getElementById('price').value);
   const gstRate = parseFloat(document.getElementById('gst').value);
 
+  // Clear previous error and result
+  document.getElementById('error').textContent = '';
+  document.getElementById('result').textContent = '';
+
   // Validate inputs
-  if (isNaN(price) || isNaN(gstRate)) {
-    alert('Please enter valid numbers for price and GST rate.');
+  if (isNaN(price) || price <= 0) {
+    document.getElementById('error').textContent = 'Please enter a valid price (must be a positive number).';
+    return;
+  }
+  if (isNaN(gstRate) || gstRate < 0) {
+    document.getElementById('error').textContent = 'Please enter a valid GST rate (must be a positive number).';
     return;
   }
 
@@ -14,5 +22,5 @@ document.getElementById('calculate').addEventListener('click', function () {
   const totalPrice = price + gstAmount;
 
   // Display the result
-  document.getElementById('totalPrice').textContent = ₹${totalPrice.toFixed(2)};
+  document.getElementById('result').textContent = `Total Price: ₹${totalPrice.toFixed(2)}`;
 });
